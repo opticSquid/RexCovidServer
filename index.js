@@ -4,6 +4,7 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 //Requiring models
 require("./Schema/CentreModel");
+require("./Schema/ActiveUser");
 // Heroku sets process.env.NODE_ENV="production"
 
 const dev_config = {
@@ -27,10 +28,15 @@ mongoose
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
-  .catch((error) => {if (error) throw error });
-  app.get("/", (req, res) => {
-    res.status(200).json({ m: "hello from backend" });
+  .then(() => {
+    app.get("/", (req, res) => {
+      res.status(200).json({ m: "hello from backend" });
+    });
+    app.use("/centres", require("./Routes/centreLocations"));
+    app.use("/signup", require("./Routes/SignUp"));
+    app.use("/login", require("./Routes/Login"));
+  })
+  .catch((error) => {
+    if (error) throw error;
   });
-  app.use("/centres", require("./Routes/centreLocations"));
-  app.use("/signup", require("./Routes/SignUp"));
 app.listen(port, () => console.log(`Server Running on port ${port}`));
