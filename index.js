@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 //Requiring models
 require("./Schema/CentreModel");
 require("./Schema/ActiveUser");
+//const jwtCheck = require("./Middlewares/Activate").jwtCheck();
 // Heroku sets process.env.NODE_ENV="production"
 
 const dev_config = {
@@ -32,9 +33,10 @@ mongoose
     app.get("/", (req, res) => {
       res.status(200).json({ m: "hello from backend" });
     });
-    app.use("/centres", require("./Routes/centreLocations"));
+    app.use("/centres",require("./Routes/centreLocations"));
     app.use("/signup", require("./Routes/SignUp"));
     app.use("/login", require("./Routes/Login"));
+    // app.use("/activate",require("./Middlewares/Activate"));
   })
   .catch((error) => {
     if (error) throw error;

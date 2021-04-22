@@ -48,20 +48,15 @@ router.post("/", (req, res) => {
         .then((resp) => {
           if (resp === true) {
             let user = {Name: response[0].Name, Email:response[0].Email, Password: response[0].Password}
-            const accessToken = jwt.sign(
-              user,
-              process.env.JWT_ACESS_TOKEN_SECRET,
-              { expiresIn: "900s" }
-            );
             const refreshToken = jwt.sign(
               user,
               process.env.JWT_REFRESH_TOKEN_SECRET
             );
             AddSession({Email:user.Email, Access_Token: accessToken, Refresh_Token:refreshToken}).then(()=>{
               console.log("Session Started");
-              res.status(200).json({ m: "Authenticed user",user: {access: accessToken, refresh: refreshToken} });
+              res.status(200).json({ m: "Authenticed user",user: {Name: user.Name,Email:user.Email, refresh: refreshToken}});
             }).catch((err)=>{
-              if (err) console.log("Session Could not Start");
+              if (err) console.log("Session Could not Start",err);
             });
           } else {
             res.status(200).json({ m: "Wrong Password" });
