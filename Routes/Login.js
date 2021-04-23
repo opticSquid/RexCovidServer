@@ -52,7 +52,7 @@ router.post("/", (req, res) => {
               user,
               process.env.JWT_REFRESH_TOKEN_SECRET
             );
-            AddSession({Email:user.Email, Access_Token: accessToken, Refresh_Token:refreshToken}).then(()=>{
+            AddSession({Email:user.Email, Refresh_Token:refreshToken}).then(()=>{
               console.log("Session Started");
               res.status(200).json({ m: "Authenticed user",user: {Name: user.Name,Email:user.Email, refresh: refreshToken}});
             }).catch((err)=>{

@@ -6,10 +6,6 @@ let ActiveUserSchema = new schema({
         required: true,
         unique: true,
     },
-    Access_Token:{
-        type: String,
-        required: true,
-    },
     Refresh_Token:{
         type: String,
         required: true,

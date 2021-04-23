@@ -36,6 +36,7 @@ mongoose
     app.use("/centres",require("./Routes/centreLocations"));
     app.use("/signup", require("./Routes/SignUp"));
     app.use("/login", require("./Routes/Login"));
+    app.use("/logout",require("./Routes/Logout"));
     // app.use("/activate",require("./Middlewares/Activate"));
   })
   .catch((error) => {
