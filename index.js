@@ -40,7 +40,7 @@ mongoose
     app.use("/logout",require("./Routes/Logout"));
     app.use("/userDetails",require("./Routes/CentreDetails"));
     app.use("/getUser",require("./Routes/getUser"));
-    // app.use("/activate",require("./Middlewares/Activate"));
+    app.use("/getDetails",require("./Routes/GetDetails"));
   })
   .catch((error) => {
     if (error) throw error;
