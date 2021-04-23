@@ -17,6 +17,18 @@ function isActive(email) {
         });
       });
 }
+const userexistsinFront = (req,res,next) =>{
+  let token = req.body.token;
+  if(token==='null')
+  {
+    res.status(200).json({m:"No user Exists",user:null});
+    next('route');
+  }
+  else
+  {
+    next();
+  }
+}
 function getUser(email) {
     return new Promise(function (resolve, reject) {
       let query = CovidCentre.find({ Email: email });
@@ -28,9 +40,9 @@ function getUser(email) {
       });
     });
   }
-router.post("/", (req, res) => {
+router.post("/",[userexistsinFront] ,(req, res) => {
     let body = req.body;
-    console.log("Body that came",body);
+    
     let decoded = decodedUser(body.token);
     console.log("decoded User", decoded);
     isActive(decoded.Email).then((activeSession)=>{
