@@ -47,7 +47,6 @@ router.post("/", (req, res) => {
           );
           AddSession({
             Email: savedUser.Email,
-            Access_Token: accessToken,
             Refresh_Token: refreshToken,
           })
             .then(() => {

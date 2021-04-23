@@ -18,11 +18,10 @@ const endSession = (email) => {
 }
 router.post("/", [Activate.jwtCheck], (req, res) => {
   let body = req.body;
-  console.log("body from reuest",body);
   endSession(body.Email).then((response)=>{
     if(response.deletedCount===1)
     {
-      console.log("Ending user session",response);
+      console.log("Ending user session");
       res.status(200).json({ m: "logout" });
     }
   }).catch((err)=>{

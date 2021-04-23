@@ -15,7 +15,7 @@ function getUser(email) {
     });
   }
 const jwtCheck = (req,res,next)=>{
-    const token= req.body.refresh;
+    const token = req.headers.refreshtoken;
     let decoded  = jwt.verify(token,process.env.JWT_REFRESH_TOKEN_SECRET);
     getUser(decoded.Email).then((response)=>{
       console.log("returned data", response[0]);

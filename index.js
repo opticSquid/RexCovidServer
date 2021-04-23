@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 //Requiring models
 require("./Schema/CentreModel");
 require("./Schema/ActiveUser");
+require("./Schema/CentreDetailsModel");
 //const jwtCheck = require("./Middlewares/Activate").jwtCheck();
 // Heroku sets process.env.NODE_ENV="production"
 
@@ -37,6 +38,7 @@ mongoose
     app.use("/signup", require("./Routes/SignUp"));
     app.use("/login", require("./Routes/Login"));
     app.use("/logout",require("./Routes/Logout"));
+    app.use("/userDetails",require("./Routes/CentreDetails"));
     // app.use("/activate",require("./Middlewares/Activate"));
   })
   .catch((error) => {
