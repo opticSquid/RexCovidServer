@@ -13,7 +13,7 @@ const dev_config = {
   origin: "http://localhost:3000",
 };
 const prod_config = {
-  origin: "https://rex-covid-assistance.netlify.app",
+  origin: "https://brave-hopper-919f2d.netlify.app",
 };
 // Initializing Express
 const app = express();
