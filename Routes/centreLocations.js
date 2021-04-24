@@ -26,7 +26,7 @@ router.post("/", (req, res) => {
   getNearbyCentres(body.MyLocation, body.Radius)
     .then((response) => {
       console.log("Got this=>\n", response);
-      res.status(200).json({ m: "success", centresFound: response });
+      res.status(200).json({ m: "success", centresFound: response, searchRadius: body.Radius, TotalResults: response.length});
     })
     .catch((err) => {
       console.log("Got error =>", err);

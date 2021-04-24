@@ -23,6 +23,10 @@ let CentreDetailSchema = new schema({
     No_doctor: String,
     location: String,
     No_Qfacilities: String,
+    contact: {
+      type: String,
+      required: true,
+    },
   },
   Location: {
       type:{
