@@ -57,19 +57,20 @@ router.post("/", (req, res) => {
               res.status(200).json({ m: "Authenticed user",user: {Name: user.Name,Email:user.Email, refresh: refreshToken}});
             }).catch((err)=>{
               if (err) console.log("Session Could not Start",err);
+              res.status(200).json({ m: "Single User Multiple Session",user:undefined});
             });
           } else {
-            res.status(200).json({ m: "Wrong Password" });
+            res.status(200).json({ m: "Wrong Password",user:undefined });
           }
         })
         .catch((err) => {
           console.log(err);
-          res.status(200).json({ m: "Could not compare passwords" });
+          res.status(200).json({ m: "Could not compare passwords",user:undefined });
         });
     })
     .catch((err) => {
       console.log(err);
-      res.status(200).json({ m: "No user of this email exists" });
+      res.status(200).json({ m: "No user of this email exists",user:undefined });
     });
 });
 module.exports = router;
